@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopIt - Furniture </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        .top-header {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff9900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 30px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+        }
+        .top-header-links {
+            display: flex;
+            gap: 30px;
+        }
+        .top-header-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        .top-header-links a:hover {
+            color: #ff9900;
+        }
+        .bottom-header {
+            background-color: #16213e;
+            padding: 15px 30px;
+        }
+        .bottom-header ul {
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .bottom-header ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        .bottom-header ul li a:hover {
+            color: #ff9900;
+        }
+
+        
+        .main-content {
+            display: flex;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        
+        .filters {
+            width: 250px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .filter-section {
+            margin-bottom: 20px;
+        }
+        .filter-section h3 {
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+        .filter-option {
+            margin-bottom: 10px;
+        }
+        .filter-option input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .filter-option button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .filter-option button:hover {
+            background-color: #e68a00;
+        }
+        .filter-categories {
+            margin-top: 20px;
+        }
+        .filter-categories h3 {
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+        .filter-categories ul {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+        .filter-categories ul li {
+            margin-bottom: 5px;
+        }
+        .filter-categories ul li a {
+            color: #1a1a2e;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .filter-categories ul li a:hover {
+            color: #ff9900;
+        }
+
+        
+        .products {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding-left: 30px;
+        }
+        .product-card {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+        .rating {
+            color: #ffa41c;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-weight: bold;
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #ff9900;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .add-to-cart:hover {
+            background-color: #e68a00;
+        }
+
+        .cart-count {
+        color: red ;
+        position: absolute;
+        top: -5px;
+        right: -10px;
+        font-size: 0.8rem;
+    }
+
+        
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .main-content {
+                flex-direction: column;
+            }
+            .filters {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .products {
+                grid-template-columns: 1fr;
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo">ShopIt</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for Exclusive Furniture">
+            </div>
+            <div class="top-header-links">
+                <a href="#"><i class="fas fa-map-marker-alt"></i> Location</a>
+                <a href="#"><i class="fas fa-user"></i> Account</a>
+                <div class="top-header-links">
+                    <a href="cart.html" id="cart-icon" style="position: relative;">
+                        <i class="fas fa-shopping-cart"></i> Cart 
+                        <span id="cart-count" class="cart-count">0</span>
+                    </a>
+                </div>
+                <a href="#"><i class="fas fa-box"></i> Orders</a>
+            </div>
+        </div>
+        <nav class="bottom-header">
+            <ul>
+                <li><a href="shopping.html">Home</a></li>
+                <li><a href="electronics.html">Electronics</a></li>
+                <li><a href="home-appliances.html">Home Appliances</a></li>
+                <li><a href="furniture.html">Furniture</a></li>
+                <li><a href="#">Best Offers</a></li>
+                <li><a href="#">Best Deals</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <aside class="filters">
+            <div class="filter-section">
+                <h3>Filter by Price</h3>
+                <div class="filter-option">
+                    <input type="number" id="minPrice" placeholder="Min Price">
+                </div>
+                <div class="filter-option">
+                    <input type="number" id="maxPrice" placeholder="Max Price">
+                </div>
+                <div class="filter-option">
+                    <button onclick="filterProducts()">Apply Filter</button>
+                </div>
+            </div>
+            <div class="filter-categories">
+                <h3>Filter by Category</h3>
+                <ul>
+                    <li><a href="#">Refrigerators</a></li>
+                    <li><a href="#">Washing Machines</a></li>
+                    <li><a href="#">Microwave Ovens</a></li>
+                    <li><a href="#">Air Conditioners</a></li>
+                    <li><a href="#">Toasters</a></li>
+                    <li><a href="#">Water Purifiers</a></li>
+                    <li><a href="#">Dishwashers</a></li>
+                    <li><a href="#">Vacuum Cleaners</a></li>
+                    <li><a href="#">Induction Cooktops</a></li>
+                    <li><a href="#">Electric Kettles</a></li>
+                    <li><a href="#">Mixer Grinders</a></li>
+                    <li><a href="#">Electric Irons</a></li>
+                    <li><a href="#">Air Purifiers</a></li>
+                    <li><a href="#">Ceiling Fans</a></li>
+                    <li><a href="#">Geysers</a></li>
+                    <li><a href="#">Hair Dryers</a></li>
+                    <li><a href="#">Food Processors</a></li>
+                    <li><a href="#">Blenders</a></li>
+                    <li><a href="#">Air Fryers</a></li>
+                    <li><a href="#">Ovens & Toaster Grills</a></li>
+                    <li><a href="#">Rice Cookers</a></li>
+                    <li><a href="#">Water Heaters</a></li>
+                    <li><a href="#">Deep Freezers</a></li>
+                    <li><a href="#">Electric Pressure Cookers</a></li>
+                    <li><a href="#">Sandwich Makers</a></li>
+                    <li><a href="#">Electric Chimneys</a></li>
+                    <li><a href="#">Room Heaters</a></li>
+                    <li><a href="#">Electric Grills</a></li>
+                    <li><a href="#">Electric Blankets</a></li>
+                    <li><a href="#">Juicers</a></li>
+                    <li><a href="#">Steam Irons</a></li>
+                    <li><a href="#">Coffee Makers</a></li>
+                    <li><a href="#">Hand Blenders</a></li>
+                    <li><a href="#">Wet Grinders</a></li>
+                    <li><a href="#">Vacuum Sealers</a></li>
+                    <li><a href="#">Ice Cream Makers</a></li>
+                    <li><a href="#">Popcorn Makers</a></li>
+                    <li><a href="#">Dehumidifiers</a></li>
+                    <li><a href="#">Electric Tandoors</a></li>
+                    
+                    
+                </ul>
+            </div>
+        </aside>
+
+        <section class="products">
+            <div class="product-card" data-price="23567">
+                <img src="./images/f1.jpeg" alt="Luxury Sofa">
+                <div class="product-info">
+                    <h3>Luxury Sofa Set</h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹23,567</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="16499">
+                <img src="./images/f2.jpeg" alt="Dining Table">
+                <div class="product-info">
+                    <h3>6-Seater Dining Table</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹16,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="11499">
+                <img src="./images/f3.jpeg" alt="Office Chair">
+                <div class="product-info">
+                    <h3>Ergonomic Office Chair</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹11,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="28599">
+                <img src="./images/f4.jpeg" alt="King Size Bed">
+                <div class="product-info">
+                    <h3>King Size Bed with Storage</h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹28,599</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="8999">
+                <img src="./images/f5.jpeg" alt="Bookshelf">
+                <div class="product-info">
+                    <h3>Wooden Bookshelf</h3>
+                    <div class="rating">★★★☆☆</div>
+                    <div class="price">₹8,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="16999">
+                <img src="./images/f6.jpeg" alt="Wardrobe">
+                <div class="product-info">
+                    <h3>4-Door Wardrobe</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹16,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="7499">
+                <img src="./images/f7.jpeg" alt="Coffee Table">
+                <div class="product-info">
+                    <h3>Glass Top Coffee Table</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹7,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="4599">
+                <img src="./images/f8.jpeg" alt="Side Table">
+                <div class="product-info">
+                    <h3>Wooden Side Table</h3>
+                    <div class="rating">★★★☆☆</div>
+                    <div class="price">₹4,599</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="5499">
+                <img src="./images/f9.png" alt="Rocking Chair">
+                <div class="product-info">
+                    <h3>Classic Rocking Chair</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹5,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="14499">
+                <img src="./images/f10.jpeg" alt="Recliner">
+                <div class="product-info">
+                    <h3>Luxury Recliner Chair</h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹14,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="15499">
+                <img src="./images/f11.jpeg" alt="Dressing Table">
+                <div class="product-info">
+                    <h3>Modern Dressing Table</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹15,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="18499">
+                <img src="./images/f12.jpeg" alt="TV Unit">
+                <div class="product-info">
+                    <h3>Wooden TV Unit</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹18,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="10999">
+                <img src="./images/f13.jpeg" alt="Bean Bag">
+                <div class="product-info">
+                    <h3>Comfortable Bean Bag</h3>
+                    <div class="rating">★★★☆☆</div>
+                    <div class="price">₹10,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="6499">
+                <img src="./images/f14.jpeg" alt="Shoe Rack">
+                <div class="product-info">
+                    <h3>Wooden Shoe Rack</h3>
+                    <div class="rating">★★★☆☆</div>
+                    <div class="price">₹6,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="22999">
+                <img src="./images/f15.jpeg" alt="Sectional Sofa">
+                <div class="product-info">
+                    <h3>Sectional Sofa</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹22,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="11499">
+                <img src="./images/f16.jpeg" >
+                <div class="product-info">
+                    <h3>Modern Bar Cabinet</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹11,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+        </section>
+    </main>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        function filterProducts() {
+            let minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+            let maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+            let products = document.querySelectorAll('.product-card');
+    
+            products.forEach(product => {
+                let price = parseFloat(product.getAttribute('data-price'));
+                if (price >= minPrice && price <= maxPrice) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    
+        function addToCart(productName, price) {
+            cart.push({ name: productName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${productName} added to cart!`);
+        }
+    
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            cartCount.innerText = cart.length;
+        }
+    
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productInfo = this.parentElement;
+                const productName = productInfo.querySelector('h3').innerText;
+                const price = productInfo.querySelector('.price').innerText.replace('₹', '').replace(',', '');
+                addToCart(productName, parseFloat(price));
+            });
+        });
+    
+        updateCartCount();
+    </script>
+    
+</body>
+</html>

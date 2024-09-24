@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopIt - Electronics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+        .top-header {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff9900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 30px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+        }
+        .top-header-links {
+            display: flex;
+            gap: 30px;
+        }
+        .top-header-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        .top-header-links a:hover {
+            color: #ff9900;
+        }
+        .bottom-header {
+            background-color: #16213e;
+            padding: 15px 30px;
+        }
+        .bottom-header ul {
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .bottom-header ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        .bottom-header ul li a:hover {
+            color: #ff9900;
+        }
+
+        
+        .main-content {
+            display: flex;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        
+        .filters {
+            width: 250px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .filter-section {
+            margin-bottom: 20px;
+        }
+        .filter-section h3 {
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+        .filter-option {
+            margin-bottom: 10px;
+        }
+        .filter-option input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .filter-option button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .filter-option button:hover {
+            background-color: #e68a00;
+        }
+        .filter-categories {
+            margin-top: 20px;
+        }
+        .filter-categories h3 {
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+        .filter-categories ul {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+        .filter-categories ul li {
+            margin-bottom: 5px;
+        }
+        .filter-categories ul li a {
+            color: #1a1a2e;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .filter-categories ul li a:hover {
+            color: #ff9900;
+        }
+
+        
+        .products {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding-left: 30px;
+        }
+        .product-card {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+        .rating {
+            color: #ffa41c;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-weight: bold;
+            color: #4caf50;
+            margin-bottom: 15px;
+        }
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #ff9900;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .add-to-cart:hover {
+            background-color: #e68a00;
+        }
+
+        .cart-count {
+        color: red ;
+        position: absolute;
+        top: -5px;
+        right: -10px;
+        font-size: 0.8rem;
+    }
+
+        
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .main-content {
+                flex-direction: column;
+            }
+            .filters {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .products {
+                grid-template-columns: 1fr;
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo">ShopIt</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for electronics">
+            </div>
+            <div class="top-header-links">
+                <a href="#"><i class="fas fa-map-marker-alt"></i> Location</a>
+                <a href="#"><i class="fas fa-user"></i> Account</a>
+                <div class="top-header-links">
+                    <a href="cart.html" id="cart-icon" style="position: relative;">
+                        <i class="fas fa-shopping-cart"></i> Cart 
+                        <span id="cart-count" class="cart-count">0</span>
+                    </a>
+                </div>
+                <a href="#"><i class="fas fa-box"></i> Orders</a>
+            </div>
+        </div>
+        <nav class="bottom-header">
+            <ul>
+                <li><a href="shopping.html">Home</a></li>
+                <li><a href="electronics.html">Electronics</a></li>
+                <li><a href="home-appliances.html">Home Appliances</a></li>
+                <li><a href="furniture.html">Furniture</a></li>
+                <li><a href="#">Best Offers</a></li>
+                <li><a href="#">Best Deals</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <aside class="filters">
+            <div class="filter-section">
+                <h3>Filter by Price</h3>
+                <div class="filter-option">
+                    <input type="number" id="minPrice" placeholder="Min Price">
+                </div>
+                <div class="filter-option">
+                    <input type="number" id="maxPrice" placeholder="Max Price">
+                </div>
+                <div class="filter-option">
+                    <button onclick="filterProducts()">Apply Filter</button>
+                </div>
+            </div>
+            <div class="filter-categories">
+                <h3>Filter by Category</h3>
+                <li><a href="#">Smartphones</a></li>
+<li><a href="#">Laptops</a></li>
+<li><a href="#">Televisions</a></li>
+<li><a href="#">Cameras</a></li>
+<li><a href="#">Gaming </a></li>
+<li><a href="#">Wearables</a></li>
+<li><a href="#">Tablets</a></li>
+<li><a href="#">Smart </a></li>
+<li><a href="#">Bluetooth </a></li>
+<li><a href="#">Headphones</a></li>
+<li><a href="#">Soundbars</a></li>
+<li><a href="#">Monitors</a></li>
+<li><a href="#">Printers</a></li>
+<li><a href="#">Routers</a></li>
+<li><a href="#">Smart </a></li>
+<li><a href="#">Projectors</a></li>
+<li><a href="#">Smart </a></li>
+<li><a href="#">Drones</a></li>
+<li><a href="#">VR Headsets</a></li>
+<li><a href="#">Digital </a></li>
+<li><a href="#">Action </a></li>
+<li><a href="#">Car Audio </a></li>
+<li><a href="#">Smart Lighting</a></li>
+<li><a href="#">Home </a></li>
+<li><a href="#">External </a></li>
+<li><a href="#">USB Flash </a></li>
+<li><a href="#">Wireless </a></li>
+<li><a href="#">Portable /a></li>
+<li><a href="#">Home Theater </a></li>
+<li><a href="#">e-Readers</a></li>
+<li><a href="#">Fitness </a></li>
+<li><a href="#">Digital </a></li>
+<li><a href="#">Power Banks</a></li>
+<li><a href="#">Memory </a></li>
+<li><a href="#">Smart </a></li>
+<li><a href="#">Wireless </a></li>
+<li><a href="#">Laptop </a></li>
+<li><a href="#">Desktop </a></li>
+<li><a href="#">All-in-One </a></li>
+<li><a href="#">Smart Plugs</a></li>
+
+            </div>
+        </aside>
+
+        <section class="products">
+            <div class="product-card" data-price="41999">
+                <img src="./images/download.jpeg" alt="DSLR Camera">
+                <div class="product-info">
+                    <h3>HP Pavilion 15</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹41,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="22999">
+                <img src="./images/elec 2.jpeg" alt="Smartphone">
+                <div class="product-info">
+                    <h3>Samsung Galaxy </h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹22,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="15499">
+                <img src="./images/elec 3.jpeg" alt="wacth">
+                <div class="product-info">
+                    <h3>Apple Watch </h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹15,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="21999">
+                <img src="./images/elec 4.jpeg" alt="DSLR Camera">
+                <div class="product-info">
+                    <h3>Canon EOS 1500D</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹21,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="9999">
+                <img src="./images/elec 6.jpeg" alt="Tablet">
+                <div class="product-info">
+                    <h3>Lenovo Tab M10</h3>
+                    <div class="rating">★★★☆☆</div>
+                    <div class="price">₹9,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="45999">
+                <img src="./images/elec 7.jpeg" alt="Smart TV">
+                <div class="product-info">
+                    <h3>LG 55-inch 4K </h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹45,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="3499">
+                <img src="./images/elec8.jpeg" alt="Bluetooth Speaker">
+                <div class="product-info">
+                    <h3>JBL Flip 5</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹3,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="8499">
+                <img src="./images/elec 10.jpeg" alt="Headphones">
+                <div class="product-info">
+                    <h3>Sony WH-1000XM4</h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹8,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="27999">
+                <img src="./images/elec 11.jpeg" alt="Gaming Console">
+                <div class="product-info">
+                    <h3>PlayStation 5</h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹27,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="2099">
+                <img src="./images/e12.jpeg" alt="Wireless Mouse">
+                <div class="product-info">
+                    <h3>Logitech MX </h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹2,099</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="6999">
+                <img src="./images/e13.jpeg" alt="Fitness Band">
+                <div class="product-info">
+                    <h3>Fitbit Charge 5</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹6,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="1299">
+                <img src="./images/e14.jpeg" alt="Portable Charger">
+                <div class="product-info">
+                    <h3>Mi Power Bank </h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹1,299</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="15999">
+                <img src="./images/e15.jpeg" alt="Camera Drone">
+                <div class="product-info">
+                    <h3>Dji Mavic Mini</h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹15,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="2499">
+                <img src="./images/elec 6.jpeg" alt="Mechanical Keyboard">
+                <div class="product-info">
+                    <h3>Razer BlackWidow</h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹2,499</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="5999">
+                <img src="./images/elec8.jpeg" alt="VR Headset">
+                <div class="product-info">
+                    <h3>Oculus Quest 2</h3>
+                    <div class="rating">★★★★★</div>
+                    <div class="price">₹5,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+            <div class="product-card" data-price="17999">
+                <img src="./images/e16.jpeg" alt="Home Theater">
+                <div class="product-info">
+                    <h3>Bose Soundbar </h3>
+                    <div class="rating">★★★★☆</div>
+                    <div class="price">₹17,999</div>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            
+        </section>
+    </main>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        function filterProducts() {
+            let minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+            let maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+            let products = document.querySelectorAll('.product-card');
+    
+            products.forEach(product => {
+                let price = parseFloat(product.getAttribute('data-price'));
+                if (price >= minPrice && price <= maxPrice) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    
+        function addToCart(productName, price) {
+            cart.push({ name: productName, price: price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(`${productName} added to cart!`);
+        }
+    
+        function updateCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            cartCount.innerText = cart.length;
+        }
+    
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productInfo = this.parentElement;
+                const productName = productInfo.querySelector('h3').innerText;
+                const price = productInfo.querySelector('.price').innerText.replace('₹', '').replace(',', '');
+                addToCart(productName, parseFloat(price));
+            });
+        });
+    
+        updateCartCount();
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyJanatha Bank - Debit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #003366;
+            margin-bottom: 20px;
+        }
+        .input-field {
+            margin-bottom: 20px;
+        }
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .input-field input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .input-field button {
+            width: 100%;
+            padding: 12px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .input-field button:hover {
+            background-color: #d32f2f;
+        }
+        .balance {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #003366;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #003366;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #002855;
+        }
+
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            .logo {
+                font-size: 20px;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            .input-field input, .input-field button {
+                font-size: 14px;
+                padding: 8px;
+            }
+            .balance {
+                font-size: 16px;
+            }
+            .back-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">MyJanatha Bank</div>
+    </div>
+    <div class="container">
+        <h2>Debit Amount</h2>
+        <div class="input-field">
+            <label for="pin">Enter PIN:</label>
+            <input type="password" id="pin" placeholder="">
+        </div>
+        <div class="input-field">
+            <label for="amount">Enter Amount to Debit:</label>
+            <input type="number" id="amount" placeholder="">
+        </div>
+        <div class="input-field">
+            <button id="debitBtn">Debit Amount</button>
+        </div>
+        <div class="balance" id="balance"></div>
+        <a href="home.html" class="back-btn">Back to Home</a>
+    </div>
+
+    <script>
+        let balance = 100000;
+
+        document.getElementById('debitBtn').addEventListener('click', function(e) {
+            
+            const correctPin = '1234';
+            const enteredPin = document.getElementById('pin').value;
+            const amount = parseInt(document.getElementById('amount').value);
+
+            if (enteredPin === correctPin) {
+                if (amount <= balance) {
+                    balance -= amount;
+                    document.getElementById('balance').textContent = 'Current balance: ' + balance + ' Rs';
+                    alert('Amount Debited Successfully!');
+                } else {
+                    alert('Insufficient Balance.');
+                }
+            } else {
+                alert('Incorrect PIN. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

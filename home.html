@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Janatha Bank - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .header {
+            background-color: #0033A0; 
+            color: white;
+            padding: 15px 0; 
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 28px; 
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .nav {
+            background-color: #D50032; 
+            padding: 8px 0; 
+            text-align: center;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px; 
+            display: inline-block;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav a:hover {
+            background-color: #FFDD44; 
+            border-radius: 5px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 10px auto; 
+            padding: 15px; 
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 30px; 
+            margin-bottom: 10px; 
+            color: #D50032; 
+        }
+
+        p {
+            font-size: 17px; 
+            margin-bottom: 20px; 
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .services {
+            display: flex;
+            gap: 15px; 
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: -15px; 
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 15px; 
+            background-color: #FFDD44;
+            border: 2px solid #cfd9e1;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            flex: 1 1 calc(25% - 15px); 
+            max-width: 250px;
+            box-sizing: border-box;
+            position: relative;
+            height: 240px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border-color: #0033A0; 
+            text-decoration: none;
+        }
+
+        .service-item img {
+            width: 90px; 
+            height: 90px; 
+            margin-bottom: 10px;
+            margin-left: 20px;
+        }
+
+        .service-item h3 {
+            font-size: 18px; 
+            color: #D50032; 
+        }
+
+        .footer {
+            background-color: #0033A0;
+            color: white;
+            text-align: center;
+            padding: 15px 0; 
+            margin-top: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px; 
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #FFDD44; 
+        }
+
+        @media (max-width: 1200px) {
+            .service-item {
+                flex: 1 1 calc(33.333% - 15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-item {
+                flex: 1 1 calc(50% - 15px);
+            }
+
+            .container {
+                margin: 10px auto;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">My Janatha Bank</div>
+    </div>
+    <div class="nav">
+        <a href="#home">Home</a>
+        <a href="#accounts">Accounts</a>
+        <a href="#loans">Loans</a>
+        <a href="#investments">Investments</a>
+        <a href="#contact">Contact Us</a>
+    </div>
+    <div class="container">
+        <h1>Welcome to My Janatha Bank</h1>
+        <p>Your trusted partner in financial excellence, offering high-end banking solutions tailored to your needs.</p>
+        <div class="services">
+            <a href="holder.html" class="service-item">
+                <img src="./images/transaction holder.jpeg" alt="Account">
+                <h3>Account Holder</h3>
+            </a>
+            <a href="credit.html" class="service-item">
+                <img src="./images/transcation credit.png" alt="Credit">
+                <h3>Credit</h3>
+            </a>
+            <a href="debit.html" class="service-item">
+                <img src="./images/tarns debit.jpeg" alt="Debit">
+                <h3>Debit</h3>
+            </a>
+            <a href="newAccount.html" class="service-item">
+                <img src="./images/trans open account.jpeg" alt="New Account">
+                <h3>Open New Account</h3>
+            </a>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-links">
+            <a href="#about">About Us</a>
+            <a href="#careers">Careers</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#terms">Terms & Conditions</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+        My Janatha Bank. All rights reserved.
+    </div>
+</body>
+</html>
